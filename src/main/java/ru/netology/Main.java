@@ -11,6 +11,7 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -78,6 +79,8 @@ public class Main {
             CloseableHttpResponse response = httpClient.execute(request);
             int code = response.getStatusLine().getStatusCode();
             if (code == 200) {
+                File dir = new File("Nasa");
+                dir.mkdir();
                 FileOutputStream fos = new FileOutputStream("Nasa/" + fileName);
                 response.getEntity().writeTo(fos);
                 System.out.println("Файл '" + fileName + "' сохранен.");
